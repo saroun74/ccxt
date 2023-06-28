@@ -645,7 +645,7 @@ class coinone extends coinone$1 {
         let fee = undefined;
         const feeCostString = this.safeString(order, 'fee');
         if (feeCostString !== undefined) {
-            const feeCurrencyCode = quote;
+            const feeCurrencyCode = (side === 'sell') ? quote : base;
             fee = {
                 'cost': feeCostString,
                 'rate': this.safeString(order, 'feeRate'),

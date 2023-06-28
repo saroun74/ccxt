@@ -429,7 +429,7 @@ export default class coinone extends Exchange {
             feeCostString = Precise.stringAbs (feeCostString);
             let feeRateString = this.safeString (trade, 'feeRate');
             feeRateString = Precise.stringAbs (feeRateString);
-            const feeCurrencyCode = (side === 'sell') ? market['quote'] : market['base'];
+            const feeCurrencyCode = market['quote'];
             fee = {
                 'cost': feeCostString,
                 'currency': feeCurrencyCode,
@@ -627,8 +627,8 @@ export default class coinone extends Exchange {
         //     }
         //
         const id = this.safeString (order, 'orderId');
-        const baseId = this.safeString (order, 'baseCurrency');
-        const quoteId = this.safeString (order, 'targetCurrency');
+        const baseId = this.safeString (order, 'targetCurrency');
+        const quoteId = this.safeString (order, 'baseCurrency');
         const base = this.safeCurrencyCode (baseId, market['base']);
         const quote = this.safeCurrencyCode (quoteId, market['quote']);
         const symbol = base + '/' + quote;
