@@ -620,8 +620,10 @@ export default class coinone extends Exchange {
         const id = this.safeString(order, 'orderId');
         const baseId = this.safeString(order, 'targetCurrency');
         const quoteId = this.safeString(order, 'baseCurrency');
+        console.log(`baseId: ${baseId}, quoteId: ${quoteId}`)
         const base = this.safeCurrencyCode(baseId, market['base']);
         const quote = this.safeCurrencyCode(quoteId, market['quote']);
+        console.log(`base: ${base}, quote: ${quote}`)
         const symbol = base + '/' + quote;
         market = this.safeMarket(symbol, market, '/');
         const timestamp = this.safeTimestamp2(order, 'timestamp', 'updatedAt');
