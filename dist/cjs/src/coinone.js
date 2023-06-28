@@ -422,7 +422,7 @@ class coinone extends coinone$1 {
             feeCostString = Precise["default"].stringAbs(feeCostString);
             let feeRateString = this.safeString(trade, 'feeRate');
             feeRateString = Precise["default"].stringAbs(feeRateString);
-            const feeCurrencyCode = (side === 'sell') ? market['quote'] : market['base'];
+            const feeCurrencyCode = market['quote'];
             fee = {
                 'cost': feeCostString,
                 'currency': feeCurrencyCode,
@@ -615,8 +615,8 @@ class coinone extends coinone$1 {
         //     }
         //
         const id = this.safeString(order, 'orderId');
-        const baseId = this.safeString(order, 'baseCurrency');
-        const quoteId = this.safeString(order, 'targetCurrency');
+        const baseId = this.safeString(order, 'targetCurrency');
+        const quoteId = this.safeString(order, 'baseCurrency');
         const base = this.safeCurrencyCode(baseId, market['base']);
         const quote = this.safeCurrencyCode(quoteId, market['quote']);
         const symbol = base + '/' + quote;
@@ -645,7 +645,7 @@ class coinone extends coinone$1 {
         let fee = undefined;
         const feeCostString = this.safeString(order, 'fee');
         if (feeCostString !== undefined) {
-            const feeCurrencyCode = (side === 'sell') ? quote : base;
+            const feeCurrencyCode = quote;
             fee = {
                 'cost': feeCostString,
                 'rate': this.safeString(order, 'feeRate'),
